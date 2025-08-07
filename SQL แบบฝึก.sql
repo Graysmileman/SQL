@@ -10,7 +10,7 @@ select *
 from products where UnitsInStock < 250
 
 -- 3.รหัสสินค้า ชื่อสินค้าที่เลิกจำหน่ายเเล้ว
-select productID, productname,	
+select productID, productname	
 from Products where Discontinued = 1
 
 -- 4. รหัสสินค้า ชื่อสินค้า ราคา ของสินค้าที่มีราคามากกว่า 100 
@@ -34,7 +34,7 @@ from Products where productname In ('แชมพู', 'แป้งเด็ก
 
 -- 9. รายละเอียดของสินค้าประเภทเครื่องเขียน
 select  Description 
-from Categories where Categories = 'เครื่องเขียน'
+from Categories where CategoryName = 'เครื่องเขียน'
 
 -- 10. รหัสประเภทสินค้า ชื่อประเภท และรายละเอียดของ สินค้าประเภทเครื่องสำอาง
 select CategoryID, CategoryName,[Description] from Categories where CategoryName='เครื่องสำอาง'
