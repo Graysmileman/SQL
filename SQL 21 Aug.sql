@@ -70,3 +70,12 @@ from Employees e join Orders o on e.EmployeeID = o.EmployeeID
 where e.FirstName = 'Nancy'
 order by ProductID
 
+--ต้องการชื่อบริษัทลูกค้าชื่อ Around tho horn ชื่อสินค้ามาจากประเทศอะไรบ้าง
+SELECT DISTINCT s.Country
+FROM Customers c
+JOIN Orders o ON c.CustomerID = o.CustomerID
+JOIN [Order Details] od ON o.OrderID = od.OrderID
+JOIN Products p ON p.ProductID = od.ProductID
+JOIN Suppliers s ON s.SupplierID = p.SupplierID
+WHERE c.CompanyName = 'Around the Horn'
+
