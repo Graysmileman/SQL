@@ -43,3 +43,30 @@ select o.OrderID เลขใบสั่งซื้อ, c.CompanyName ลู�
 from Orders o 
 join Customers C on o.CustomerID=C.CustomerID
 join Employees e on o.EmployeeID=e.EmployeeID
+
+select * 
+from Employees e 
+join orders o on e.EmployeeID = o.
+
+-- ต้องการชื่อบริษัทขนส่ง และจำนวนใบสั่งซื้อที่เกี่ยวข้อง
+select s.CompanyName, count(*) จำนวนOrders 
+from Shippers s join Orders o
+on s.ShipperID = o.ShipVia
+group by s.CompanyName
+order by 2 desc
+-- ต้องการรหัสสินค้า ชื่อสินค้า และจำนวนทั้งหมดที่ขายได้
+SELECT 
+    p.ProductID, 
+    p.ProductName, 
+    SUM(od.Quantity) AS จำนวนที่ขายได้
+FROM Products p
+JOIN [Order Details] od ON p.ProductID = od.ProductID
+GROUP BY p.ProductID, p.ProductName;
+-- ต้องการ รหัสสินค้า ชื่อสินค้า ที่ nancy ขายได้ทั้งหมด เรียงตามลำดับรหัสสินค้า
+select distinct p.ProductID, p.ProductName
+from Employees e join Orders o on e.EmployeeID = o.EmployeeID
+                 join [Order Details] od on o.OrderID = od.OrderID
+                 join Products p on p.ProductID = od.ProductID
+where e.FirstName = 'Nancy'
+order by ProductID
+
