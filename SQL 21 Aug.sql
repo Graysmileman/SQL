@@ -78,4 +78,25 @@ JOIN [Order Details] od ON o.OrderID = od.OrderID
 JOIN Products p ON p.ProductID = od.ProductID
 JOIN Suppliers s ON s.SupplierID = p.SupplierID
 WHERE c.CompanyName = 'Around the Horn'
-
+-- บริษัทสินค้า Around the horn ซื้อสินค้าอะไรบ้าง จำนวนเท่าไหร่
+SELECT 
+    p.ProductID AS รหัสสินค้า, 
+    p.ProductName AS ชื่อสินค้า, 
+    SUM(od.Quantity) AS จำนวน
+FROM Customers c
+JOIN Orders o ON c.CustomerID = o.CustomerID
+JOIN [Order Details] od ON o.OrderID = od.OrderID
+JOIN Products p ON p.ProductID = od.ProductID
+WHERE c.CompanyName = 'Around the Horn'
+GROUP BY p.ProductID, p.ProductName
+ORDER BY p.ProductID;
+-- ต้องการหมายเลขใบสั่งซื้อ ชื่อพนักงาน และยอดขายในใบสั่งซื้อนั้น
+SELECT 
+    o.OrderID, 
+    e.FirstName,
+    SUM(od.Quantity * od.UnitPrice * (1 - od.Discount)) AS TotalCash
+FROM Orders o
+JOIN Employees e ON o.EmployeeID = e.EmployeeID
+JOIN [Order Details] od ON o.OrderID = od.OrderID
+GROUP BY o.OrderID, e.FirstName
+ORDER BY o.OrderID;
