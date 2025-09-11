@@ -29,3 +29,41 @@ where ShipCountry not in (Select distinct country from Suppliers)
 --ต้องการข้อมูลสินค้าที่มีราคาน้อยกว่า 50$
 Select ROW_NUMBER() over (order by unitprice desc) AS Rownum, ProductName,UnitPrice from Products
 where UnitPrice < 50
+
+--Insert
+-- ตาราง มี PK เป็น AutoIncrement
+Insert into Shippers
+values('บริษัทขนเยอะจำกัด', '081-123456789')
+
+insert into Shippers(CompanyName)
+values('บริษัทขนเยอะมหาศาจำกัด')
+
+--ตารางที่มี PK เป็น char, nChar
+insert into Customers(CustomerID,CompanyName)
+values ('A0001', 'บริษัทขายน้อยจำไม่กัด')
+
+--จงเพิ่มข้อมูลพนักงาน 1 คน (ใส่ข้อมูลเท่าที่มี)
+insert into Employees(FirstName,LastName)
+values ('Jitpanu','Yottiwong')
+
+--จงเพิ่มสินค้า ปลาร้าไม่บอง ราคา1.5$ จำนวน 12
+insert into Products(ProductName,UnitPrice,UnitsInStock)
+values('ปลาแดกบอง','1.5','12')
+
+
+--วิธีลบ
+delete from Shippers where CompanyName='บริษัทขนเยอะมหาศาจำกัด'
+
+
+--ปรับปรุงจำนวนสินค้าคงเหลือสินค้ารหัส1 เพิ่ใจำนวนเข้าไป 100 ชิ้น
+update Products
+set UnitsInStock = UnitsInStock+100
+where ProductID = 1
+--ปรับปรุง เมือง และประเทศลูกค้า รหัส A0001 ให้เป็น อุดรธาณี thai;land
+update Customers
+set City = 'อุดรธานี', Country = 'Thailand'
+where CustomerID ='A0001'
+
+select * from Customers
+select * from Employees
+select * from Products
