@@ -31,3 +31,11 @@ Group by ProductName
 --Right outer join
 
 -- Full outer join
+
+-----------------------------------------------------------
+--Northwind
+--ต้องการชื่อพนังงานทุกคน เเละชื่อหัวหน้า
+Select emp.FirstName, Boss.FirstName
+from Employees emp Full outer join Employees Boss
+on emp.ReportsTo = Boss.EmployeeID
+
